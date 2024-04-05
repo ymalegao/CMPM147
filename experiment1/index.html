@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- This title is used for tabs and bookmarks -->
-	<title>Experiment X - Subject/Topic</title>
+	<title>Experiment 1 - Subject/Topic</title>
 
 	<!-- Use UTF character set, a good idea with any webpage -->
 	<meta charset="UTF-8" />
@@ -17,8 +17,6 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
         crossorigin="anonymous"></script>
-	<!-- Load p5.js library -->
-	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
 
 	<!-- Link to javascript files - DEFER waits until all elements are rendered -->
     <script type="text/javascript" src="../js/site.js" DEFER></script>
@@ -32,12 +30,21 @@
 	<main id="content">
 		<section>
 
-			<h1>Experiment X - Subject/Topic</h1>
+			<h1>Experiment 1 - Getting Started</h1>
 
 			<div class="minor-section">
-				<div id="canvas-container">
-					<!-- canvas will be added here -->
-				</div>
+				<button id="clicker">Generate Tweet</button>
+				<div
+				style="
+					font-family: fantasy;
+					border: thin solid gray;
+					padding: 1em;
+					margin: 1em;
+					box-shadow: 2px 2px 5px gray;
+					background: #ffe;
+				"
+				id="box"
+				></div>
                 <div class="fullscreen-box">
                     <button id="fullscreen">Fullscreen</button>
                 </div>
@@ -45,17 +52,34 @@
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>With this generator, I am trying to generate how modern tweets by politians look like,
+					except done in the context of the founding fathers. 
+				</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>Based on the template that was provided, all I really had to do was to brainstorm of a theme
+					for what I wanted the generator to do. Once that was done, I had to change the template for the 
+					generator, and then think of the filler words that would used in the template. 
+					After the imitation of the innovation part was over, I had to get the code on glitch to
+					the index.html of experiment 1. This part included changing the div of the html to include the button, 
+					as well as changing the main function to include the code of the template and the filler words.
+					Once this was done, I had to change the glitch code to use jQuery instead of how it simplies the DOM elements
+				</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>I decided that it would be fun to have tweets from presidents
+					but it would be even funnier if the tweets were in the context of the founding fathers.
+					I think the overall outcome of the tweets are quite funny, especially since it sounds like a modern
+					tweet, but the people in the messsage are the founding fathers and their enemies. I think the most difficult part of This
+					experiment was the transfer of the code from glitch to the index.html of experiment 1. I am not used to working with html 
+					so I had to make sure that the changes that I was making were in the right spots, since if I accidently put it before
+					a div or after a div, the code would not work. I think the most successful part of this experiment was the outcome of the tweets, 
+					and integrating it onto the website. 
+				</p>
 			</div>
 
 		</section>
