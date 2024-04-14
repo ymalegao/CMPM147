@@ -10,6 +10,23 @@
 const VALUE1 = 1;
 const VALUE2 = 2;
 
+let seed = 239;
+const green1 = "#98da38"
+const green2 = "#6bbd69"
+const green3 = "#68c30e"
+const green4 = "#89d551"
+const green5 = "#4a6a20"
+const green6 = "#3a6304"
+const green7 = "#9ec868"
+const green8 = "#62a40d"
+const fgreen = "#a7fc00"
+
+
+let greenarr = [green1, green2, green3, green4,green6, green8];
+let pos = 0;
+let rowHeight = 0; // Height of each row
+
+
 // Globals
 let myInstance;
 let canvasContainer;
@@ -38,6 +55,7 @@ function resizeScreen() {
 function setup() {
   // place our canvas, making it fit our container
   canvasContainer = $("#canvas-container");
+  createButton("reimagine").mousePressed(() => seed++);
   let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
   canvas.parent("canvas-container");
   // resize canvas is the page is resized
@@ -53,27 +71,101 @@ function setup() {
 
 // draw() function is called repeatedly, it's the main animation loop
 function draw() {
-  background(220);    
-  // call a method on the instance
-  myInstance.myMethod();
+  randomSeed(seed);
+  background(1);
 
-  // Set up rotation for the rectangle
-  push(); // Save the current drawing context
-  translate(centerHorz, centerVert); // Move the origin to the rectangle's center
-  rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
-  fill(234, 31, 81);
-  noStroke();
-  rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
-  pop(); // Restore the original drawing context
+  for (let i = 0; i < width; i++) {
+    let cloverSize = random(10, 35); // Random size between 20 and 40
 
-  // The text is not affected by the translate and rotate
-  fill(255);
-  textStyle(BOLD);
-  textSize(140);
-  text("p5*", centerHorz - 105, centerVert + 40);
+    let cloverX = pos + cloverSize;
+    let cloverY = rowHeight * 1.1 // space them out a bit more
+
+    clover(cloverX, cloverY, cloverSize, greenarr);
+    pos += cloverSize * 1.8; // Update x-position for the next clover
+    if (pos > width){
+      pos = 0; //start a new row
+      if (rowHeight >= height/1.1){
+        rowHeight -= 10 //to make them fit more on screen 
+      }
+      rowHeight+=25 //go next row
+    
+    }
+    
+    
+    
+    fill(255, 255, 255, 20); //fill for eclipse to make them stand out a little in the cluster
+    noStroke();
+    ellipse(cloverX, cloverY + cloverSize * 0.6, cloverSize * 2, cloverSize * 2);
+
+
+  }
+  
+  let fcloverSize = random(10,15)
+  let fcloverX = random(width/1,5)
+  let fcloverY = random(height/1.5)
+  four_clover(fcloverX, fcloverY, fcloverSize, fgreen);
+
+  
+ 
+  pos = 0; // Reset x-position for the next row
+  rowHeight = 0
 }
 
-// mousePressed() function is called once after every time a mouse button is pressed
-function mousePressed() {
-    // code to run when mouse is pressed
+//code for heart found at 
+function heart(x, y, size) {
+  beginShape();
+  vertex(x, y);
+  bezierVertex(x - size / 2, y - size / 2, x - size, y + size / 3, x, y + size);  
+  bezierVertex(x + size, y + size / 3, x + size / 2, y - size / 2, x, y);  
+  endShape();
+
+  
+}
+
+function clover(x,y,size, greenarr){
+  
+  beginShape();
+  let color = random(greenarr)
+  for (let i = 0; i < 3; i++) {
+    
+    push();
+    
+    fill(color);
+
+    let bottomX = x;
+    let bottomY = y + size / 3 + size / 2;
+    translate(bottomX, bottomY); 
+    rotate(PI *2 / 3 * i); 
+    translate(-bottomX, -bottomY); 
+    heart(x, y-2.5, size);
+    endShape(CLOSE);
+    
+    
+    pop();
+  }
+  
+}
+
+
+function four_clover(x,y,size, greenarr){
+  
+  beginShape();
+  for (let i = 0; i < 4; i++) {
+    
+    push();
+    
+    fill(greenarr);
+
+    let bottomX = x;
+    let bottomY = y + size / 3 + size / 2;
+    translate(bottomX, bottomY); 
+    rotate(PI *2 / 4 * i); 
+    translate(-bottomX, -bottomY); 
+    heart(x, y-2.5, size);
+    endShape(CLOSE);
+    
+    
+    pop();
+  }
+  
 }
