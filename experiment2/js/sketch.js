@@ -73,14 +73,25 @@ function setup() {
 function draw() {
   randomSeed(seed);
   background(1);
+  let mouseForce = createVector(mouseX, mouseY);
+
+ 
 
   for (let i = 0; i < width; i++) {
     let cloverSize = random(10, 35); // Random size between 20 and 40
 
     let cloverX = pos + cloverSize;
     let cloverY = rowHeight * 1.1 // space them out a bit more
+    let d = dist(mouseX, mouseY, cloverX, cloverY);
+    
+    let force = p5.Vector.sub(createVector(cloverX, cloverY), mouseForce);
+    force.mult(50 / (d * d));
+    cloverX += force.x;
+    cloverY += force.y;
+    
 
-    clover(cloverX, cloverY, cloverSize, greenarr);
+
+    clover(cloverX , cloverY , cloverSize, greenarr);
     pos += cloverSize * 1.8; // Update x-position for the next clover
     if (pos > width){
       pos = 0; //start a new row
@@ -90,6 +101,7 @@ function draw() {
       rowHeight+=25 //go next row
     
     }
+    
     
     
     
@@ -103,7 +115,16 @@ function draw() {
   let fcloverSize = random(10,15)
   let fcloverX = random(width/1,5)
   let fcloverY = random(height/1.5)
+  
+  let d = dist(mouseX, mouseY, fcloverX, fcloverY);
+    
+  let fforce = p5.Vector.sub(createVector(fcloverX, fcloverY), mouseForce);
+  fforce.mult(50 / (d * d));
+  
+  fcloverX+= fforce.x;
+  fcloverY+= fforce.y;
   four_clover(fcloverX, fcloverY, fcloverSize, fgreen);
+
 
   
  
@@ -150,6 +171,7 @@ function clover(x,y,size, greenarr){
 function four_clover(x,y,size, greenarr){
   
   beginShape();
+  
   for (let i = 0; i < 4; i++) {
     
     push();
@@ -169,3 +191,4 @@ function four_clover(x,y,size, greenarr){
   }
   
 }
+
