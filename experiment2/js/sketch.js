@@ -69,7 +69,6 @@ function setup() {
   resizeScreen();
 }
 
-// draw() function is called repeatedly, it's the main animation loop
 function draw() {
   randomSeed(seed);
   background(1);
@@ -78,7 +77,7 @@ function draw() {
  
 
   for (let i = 0; i < width; i++) {
-    let cloverSize = random(10, 35); // Random size between 20 and 40
+    let cloverSize = random(10, 35); 
 
     let cloverX = pos + cloverSize;
     let cloverY = rowHeight * 1.1 // space them out a bit more
@@ -132,7 +131,6 @@ function draw() {
   rowHeight = 0
 }
 
-//code for heart found at 
 function heart(x, y, size) {
   beginShape();
   vertex(x, y);
