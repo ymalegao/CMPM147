@@ -25,9 +25,16 @@
 	<!-- Use me for a JavaScript OOP Project -->
 	<script type="text/javascript" src="./js/project.js" DEFER></script>
 	<!-- Use me for a p5.js project -->
-	<script type="text/javascript" src="./js/sketch.js" DEFER></script>
+	<script type="text/javascript" src="./js/dun.js"></script>
+	<!-- Use me for a p5.js project -->
+	
+
+	<script type="text/javascript" src="./js/sketch.js"></script>
+	
 </head>
 <body>
+	
+
 	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
 	<main id="content">
 		<section>
@@ -35,9 +42,20 @@
 			<h1>Experiment X - Subject/Topic</h1>
 
 			<div class="minor-section">
-				<div id="canvas-container">
+				<div id="canvas-container1">
+					<textarea cols="30" rows="30" id="asciiBox" style="opacity: 0.5; letter-spacing: 1ex; width: 320px; margin: 10px; font-family: monospace;"></textarea>
+					<button id="reseedButton">Reseed</button>
+					<span id="seedReport"></span>
 					<!-- canvas will be added here -->
+
 				</div>
+				<div id="canvas-container2">
+					<textarea cols="30" rows="30" id="asciiBox2" style="opacity: 0.5; letter-spacing: 1ex; width: 320px; margin: 10px; font-family: monospace;"></textarea>
+
+					<!-- second canvas will be added here -->
+				</div>
+
+				
                 <div class="fullscreen-box">
                     <button id="fullscreen">Fullscreen</button>
                 </div>
@@ -45,17 +63,17 @@
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>We are trying to generate and implement autotiling so we can automatically generate maps and dungeons</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>We first have a grid that is filled with one code, and that grid is populated and over written using noise and random to generate biomes. Once that is done, I implemented auto-tiling logic to make sure that the tile to tile connection would be smoother. To do this we used tile bitmasking and a look up table</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>For me the hardest part was the look up table and understanding how everything worked considering the autotiling. I was stuck on how to generate biomes and then apply the auto tiler to that until I figured out that you had to layer the codes so that they would render on top of one another</p>
 			</div>
 
 		</section>

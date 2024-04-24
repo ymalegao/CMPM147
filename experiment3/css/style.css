@@ -13,7 +13,9 @@ body {
     align-items: center;
 }
 
+
 #canvas-container {
-    width: 100%;
-    height: 600px;
-}
+    display: flex;
+    flex-direction: row; /* This will make the children sit side by side */
+    align-items: start; /* This will align the children at the top */
+  }
