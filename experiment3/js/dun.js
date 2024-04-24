@@ -179,7 +179,7 @@ let sketch = function(p) {
         for (let i = 0; i < grid.length; i++) {
           for (let j = 0; j < grid[i].length; j++) {
             if (grid[i][j] === "_") {
-              p.placeTile(i, j, p.random(3), 16);
+              p.placeTile(i, j, p.random(3) |0 , 16);
               if (p.random() < 0.2) p.drawGlowingRune(i, j);
             
       
@@ -231,13 +231,13 @@ let sketch = function(p) {
         // console.log("tiOffset " + tiOffset, "tjOffset " + tjOffset );
         if (code == "0001"){
           if (p.random() < 0.2){
-              p.placeTile(i, j,  4, 28);
+              p.placeTile(i, j,  4, 28); ///spawn treasure 
           
     
           }
          if (p.random() < 0.2){
             p.placeTile(i,j,28,1)
-            p.placeTile(i-1,j,28,0)
+            p.placeTile(i-1,j,28,0) // spawn tower
           }
         }
         p.placeTile(i, j,  tiOffset, tjOffset);

@@ -156,7 +156,7 @@ p.drawGrid = function(grid) {
     for (let i = 0; i < grid.length; i++) {
         for (let j = 0; j < grid[i].length; j++) {
             if (grid[i][j] === "W") {
-                p.placeTile(i, j, p.random(3), 14); // Draw water tile
+                p.placeTile(i, j, p.random(3)|0, 14); // Draw water tile
                 p.drawGlowingRune(i, j);
             }
         }
@@ -165,7 +165,7 @@ p.drawGrid = function(grid) {
     for (let i = 0; i < grid.length; i++) {
         for (let j = 0; j < grid[i].length; j++) {
             if (grid[i][j] === ":") {
-                p.placeTile(i, j, p.random(3), 3); // Draw eath tile
+                p.placeTile(i, j, p.random(3)|0, 3); // Draw eath tile
             }
             if(grid[i][j] == "W"){
                 p.drawContext_ground(grid, i, j, ":", 0,0); //for ground with water
@@ -176,7 +176,7 @@ p.drawGrid = function(grid) {
     for (let i = 0; i < grid.length; i++) {
         for (let j = 0; j < grid[i].length; j++) {
             if (grid[i][j] === "_") {
-                p.placeTile(i, j, p.random(3), 0); // Draw leaf tile
+                p.placeTile(i, j, p.random(3)|0, 0); // Draw leaf tile
             }
             if (grid[i][j] == ":"){
                 p.drawContext(grid, i, j, "_", 0, 0); //draw for leaf interacting with dirt 
