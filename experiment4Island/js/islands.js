@@ -34,8 +34,8 @@ class Ripple {
     
     push();
     translate(this.x, this.y);
-    rotate(this.direction); // Rotate the ripple based on its direction
-    ellipse(0, 0, this.radius * 2, this.radius); // Draw a flattened ellipse
+    rotate(this.direction); 
+    ellipse(0, 0, this.radius * 2, this.radius); //   flattened ellipse
     pop();
   }
 
@@ -99,10 +99,12 @@ function p3_drawTile(i, j) {
   noStroke();
 
   // Calculate the height of the terrain at this tile using Perlin noise
-  let terrainHeight = noise(i * 0.1, j * 0.1) * 100; // Adjust the noise parameters for different terrain patterns
+  let terrainHeight = noise(i * 0.1, j * 0.1) * 100; 
   
   // Define ocean and island parameters
-  const waterLevel = 30; // Adjust as needed
+  const waterLevel = 30; 
+
+  //for autotiling 
   let leftIsWater = noise((i - 1) * 0.1, j * 0.1) * 100 < waterLevel;
   let rightIsWater = noise((i + 1) * 0.1, j * 0.1) * 100 < waterLevel;
   let topIsWater = noise(i * 0.1, (j - 1) * 0.1) * 100 < waterLevel;
@@ -112,9 +114,10 @@ function p3_drawTile(i, j) {
   let tileColor;
   if (terrainHeight >= waterLevel && (leftIsWater || rightIsWater || topIsWater || bottomIsWater)) {
     // Draw a rounded rectangle
+    //this is for autoiling but also for the island color
     beginShape();
     let noiseValue = noise(i * 0.1, j * 0.1);
-    let lightness = map(noiseValue, 0, 1, 200, 255); // Adjust the range as needed
+    let lightness = map(noiseValue, 0, 1, 200, 255); 
     fill(255+ lightness, 255+ lightness, 0);
     vertex(-tw + 10, -th); // top left corner
     bezierVertex(-tw, -th, -tw, -th + 10, -tw, 0); // top left curve
@@ -128,11 +131,11 @@ function p3_drawTile(i, j) {
   } else {
   if (terrainHeight < waterLevel) {
     let noiseValue = noise(i * 0.1, j * 0.1);
-    let lightness = map(noiseValue, 0, 1, 200, 255); // Adjust the range as needed
+    let lightness = map(noiseValue, 0, 1, 200, 255); 
     tileColor = color(255 + lightness, 255 + lightness, 0); // land color
   } else {
     let noiseValue = noise(i * 0.1, j * 0.1);
-    let darkness = map(noiseValue, 0, 1, 0, 255);
+    let darkness = map(noiseValue, 0, 1, 0, 255); //change water color
 
 
     tileColor = color(50, 150 - darkness, 255 - darkness); // water

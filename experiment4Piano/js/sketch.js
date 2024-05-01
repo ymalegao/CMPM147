@@ -52,17 +52,16 @@ for (let note in pianoSounds) {
   let noteName = note.slice(0, -1); // Get the note name without the octave
   let octave = parseInt(note.slice(-1)); // Get the octave
 
-  // Increase the octave for the right side
+ 
   if (noteName >= 'G') {
     octave++;
   }
 
-  // Decrease the octave for the left side
+ 
   else if (noteName <= 'D') {
     octave--;
   }
 
-  // Update the note name in the object
   pianoSounds[noteName + octave] = pianoSounds[note];
   delete pianoSounds[note];
 }
@@ -121,38 +120,34 @@ function isKeyBlack(i) {
 }
 
 function p3_tileClicked(i, j) {
-  // Check if the clicked tile is a white or black key
   if (!isKeyWhite(i, j) && !isKeyBlack(i)) {
-    return; // If it's not, exit the function without playing a sound
+    return; // no sound
   }
 
   let key = [i, j];
   clicks[key] = 1 + (clicks[key] | 0);
 
-  // Calculate a unique index for each key based on its i and j values
+  // a unique index for each key based on its i and j values
   let noteIndex = (Math.abs(i) + Math.abs(j)) % notes.length;  
   let note = notes[noteIndex];
   let noteValue = notes.indexOf(note);
   let combinedValue = (noteValue + parseInt(worldSeed)) % notes.length;
   let resultingNote = notes[combinedValue];
 
-  // Play the note
   // console.log(i, j, noteIndex, resultingNote);
   piano.triggerAttackRelease(resultingNote, '8n', Tone.now());
 }
 
 function p3_drawBefore() {}
 function p3_drawTile(i, j, offsetX) {
-  // Determine if the current key is a white key or a black key
-  let keyPattern = [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0]; // 0 for white keys, 1 for black keys
+  let keyPattern = [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0]; //pattern to distrubute
   let isWhiteKey = keyPattern[i % 12] === 0;
   let black  = isKeyBlack(i);
 
-  // Set the fill color based on whether it's a white or black key
 
   // Calculate the position of the tile based on its index
-  let x = (i - j) * tw + offsetX; // Include the camera offset and adjust for diagonal grid
-  let y = (i + j) * th / 2; // Adjust for diagonal grid
+  let x = (i - j) * tw + offsetX; 
+  let y = (i + j) * th / 2;
 
   // Draw the white key shape
   push();
@@ -167,10 +162,10 @@ function p3_drawTile(i, j, offsetX) {
 
   // Draw the black key shape
   if (!isWhiteKey) {
-    let blackKeyWidth = tw/2; // Adjust the width of the black keys
-    let blackKeyHeight = th*2; // Adjust the height of the black keys
-    let blackKeyX = x + tw - blackKeyWidth*2; // Adjust the x-position of the black keys
-    let blackKeyY = y - th * 2; // Adjust the y-position of the black keys
+    let blackKeyWidth = tw/2;
+    let blackKeyHeight = th*2; 
+    let blackKeyX = x + tw - blackKeyWidth*2; 
+    let blackKeyY = y - th * 2; 
 
     push();
     fill(0);
@@ -193,7 +188,7 @@ function p3_drawSelectedTile(i, j) {
   
   noStroke();
   fill(0);
-  text("tile " + [i, j], i * tw, j * th); // Adjust the position of the text
+  text("tile " + [i, j], i * tw, j * th); 
 }
 
 function p3_drawAfter() {}
