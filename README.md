@@ -154,4 +154,3 @@ Here is the basic structure with stub or empty files in place.
 │   │   └── sketch.js
 │   └── index.html
 └── README.md
-```

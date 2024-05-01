@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- This title is used for tabs and bookmarks -->
+	<title>Experiment 4 - Alternate Worlds</title>
+
+	<!-- Use UTF character set, a good idea with any webpage -->
+	<meta charset="UTF-8" />
+	<!-- Set viewport so page remains consistently scaled w narrow devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Include CSS file, including a site-wide CSS and for this particular page -->
+	<link rel="stylesheet" type="text/css" href="../css/site.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- Load jQuery library -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+	<!-- Load p5.js library -->
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+
+	<!-- Link to javascript files - DEFER waits until all elements are rendered -->
+    <script type="text/javascript" src="../js/site.js" DEFER></script>
+	<!-- Use me for a JavaScript OOP Project -->
+	<script type="text/javascript" src="./js/project.js" DEFER></script>
+	<!-- Use me for a p5.js project -->
+	<script type="text/javascript" src="./js/engine.js"></script>
+	<script type="text/javascript" src="./js/hashmin.js"></script>
+	<!-- Use me for a p5.js project -->
+	
+	<script src="http://unpkg.com/tone"></script>
+
+	<script type="text/javascript" src="./js/sketch.js"></script>
+	
+</head>
+<body>
+	
+
+	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
+	<main id="content">
+		<section>
+
+			<h1>Experiment 4 - Alternate Worlds</h1>
+
+			<div class="minor-section">
+				<div id="canvas-container">
+					
+					<!-- canvas will be added here -->
+
+				</div>
+				
+				<button id="reseedButton">Reseed</button>
+					<span id="seedReport"></span>
+
+				
+                <div class="fullscreen-box">
+                    <button id="fullscreen">Fullscreen</button>
+                </div>
+			</div>
+
+			<div class="minor-section">
+				<h2>Description</h2>
+				<p>We are trying to generate and implement autotiling so we can automatically generate maps and dungeons. Users can edit the map from the ascii grid on the left</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Technical</h2>
+				<p>We first have a grid that is filled with one code, and that grid is populated and over written using noise and random to generate biomes. Once that is done, I implemented auto-tiling logic to make sure that the tile to tile connection would be smoother. To do this we used tile bitmasking and a look up table, that was manually filled out in order to provide the right tile in the right context. It was like Wave Collapse Function but a little easier. </p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Reflection</h2>
+				<p>For me the hardest part was the look up table and understanding how everything worked considering the autotiling. I was stuck on how to generate biomes and then apply the auto tiler to that until I figured out that you had to layer the codes so that they would render on top of one another. Once I had figured that out, there were a few edge cases that had to be fixed, but other than that, I think working with noise and random is not the easiest task in the world, espcially since they are so random! My highs were figuring out the autotiling logic, making the clouds not spawn in the same spot over and over, which was happening because of the random seed that was set. </p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Artistic Statemnt</h2>
+				<p>Dungeon:
+					A dungeon map that can be played as a 2d playformer, or as a top down. 
+					Codes: _ is wall, and . is floor 
+					Life: As time goes by, the jewels outside the dungeon will glow and wink at you
+
+					Overworld:
+					A map that can be probably only played as a top down.
+					Codes: W is water, : is dirt, and _ is grass
+					Life: As time goes by, the clouds will pass through the scene and the water will have a shimmering affect
+
+					(using tiles from Micro Tileset - Overworld & Dungeon by thkaspar)
+
+
+				</p>
+			</div>
+
+		</section>
+		<nav id="links" class="minor-section">
+			<!-- Put link back to homepage here. -->
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+		</nav>
+	</main>
+</body>
+</html>
