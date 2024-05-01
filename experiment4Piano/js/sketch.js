@@ -45,6 +45,9 @@ const pianoSounds = {
   // "B5": "key21.mp3",
 };
 
+let [tw, th] = [p3_tileWidth(), p3_tileHeight()];
+
+let clicks = {};
 for (let note in pianoSounds) {
   let noteName = note.slice(0, -1); // Get the note name without the octave
   let octave = parseInt(note.slice(-1)); // Get the octave
@@ -94,9 +97,7 @@ function p3_tileHeight() {
   return 32;
 }
 
-let [tw, th] = [p3_tileWidth(), p3_tileHeight()];
 
-let clicks = {};
 
 let notes = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'D5', 'E5', 'F5', 'G5', 'A5', 'B5'];
 
