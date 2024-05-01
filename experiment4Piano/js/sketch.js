@@ -13,6 +13,7 @@
     p3_drawSelectedTile
     p3_drawAfter
 */
+let worldSeed;
 
 
 function p3_preload() {
@@ -77,7 +78,6 @@ const piano = new Tone.Sampler(pianoSounds, {
 
 function p3_setup() {}
 
-let worldSeed;
 
 
 
