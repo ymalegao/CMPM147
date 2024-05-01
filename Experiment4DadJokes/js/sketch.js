@@ -111,7 +111,7 @@ function p3_drawTile(i, j) {
   // noStroke();
 
   if (XXH.h32("tile:" + [i, j], worldSeed) % 4 == 0) {
-    fill(300);
+    fill(0,1,2,0);
   } else {
     fill(300);
   }
@@ -119,6 +119,8 @@ function p3_drawTile(i, j) {
   push();
 
   // beginShape();
+  // text(jokes[[i, j]], 0, brightness);
+
   // vertex(-tw, 0);
   // vertex(0, th);
   // vertex(tw, 0);
@@ -127,11 +129,15 @@ function p3_drawTile(i, j) {
 
   let n = clicks[[i, j]] | 0;
   if (n % 2 == 1) {
-    fill(0, 0, 0, 32);
+    // fill(0, 0, 0, 32);
     if (jokes[[i, j]]) {
       textSize(12);
       textAlign(CENTER);
-      fill(1);
+      randomSeed(worldSeed);
+      let r = random(255);
+      let g = random(255);
+      let b = random(255);
+      fill(r, g, b);
       //make text float up and down using time
       let offset = (i + j) * 0.1;
       //make text go up
