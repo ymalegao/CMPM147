@@ -31,6 +31,7 @@ function p4_inspirations() {
   }
   
   function p4_initialize(inspiration) {
+    //this code is from Wes Modes's example
     let canvasContainer = $('.image-container'); // Select the container using jQuery
     let canvasWidth = canvasContainer.width(); // Get the width of the container
     let aspectRatio = inspiration.image.height / inspiration.image.width;
@@ -56,6 +57,7 @@ function p4_inspirations() {
       bg: c
     };
 
+    //Also from Wes Modes's example of how to create boxes for mutations
     for(let i = 0; i < 2500; i++) {
       design.fg.push({x: random(width),
                       y: random(height),
@@ -72,54 +74,31 @@ function p4_inspirations() {
     return design;
   }
   
-  let shapesDrawn = 0;
-  let maxShapes = 1000; // Adjust this value based on the size of your shapes and the size of your canvas
-  //if restart is clicked, the shapesDrawn is reset to 0
+ 
   
   function p4_render(design, inspiration) {
     noStroke();
     background(design.bg);
 
-    let numShapes = maxShapes // Draw up to 100 shapes at a time
-    // for (let box of design.fg) {
-    //   //get color from design and apply to the shape
-    //   let posX = box.x;
-    //   let posY = box.y;
-    //   let imgX = Math.round(map(posX, 0, width, 0, inspiration.image.width));
-    //   let imgY = Math.round(map(posY, 0, height, 0, inspiration.image.height));
-    //   let c = inspiration.image.get(imgX, imgY);
-    //   box.fill = c;
-    //   fill(c);
-    //   if (design.shape === 'circle') {
-    //     ellipse(posX, posY, box.w);
-    //   }
-    //   else if (design.shape === 'square') {
-    //     rect(posX, posY, box.w, box.h);
-    //   }
-    //   else if (design.shape === 'triangle') {
-    //     triangle(posX, posY, posX - box.w / 2, posY + box.h / 2, posX + box.w / 2, posY + box.h / 2);
-    //   }
-    // }
-
+   
 
     for (let i = 0; i < 2500; i++) {
-    // Sample a color from a random position in the inspiration image
+    // sample a color from a random position in the inspiration image
     // let posX = random(width);
     // let posY = random(height);
     let posX = design.fg[i].x;
     let posY = design.fg[i].y;
 
-    // Map the position to the corresponding position in the inspiration image
+    // map color to image
     let imgX = Math.round(map(posX, 0, width, 0, inspiration.image.width));
     let imgY = Math.round(map(posY, 0, height, 0, inspiration.image.height));
 
-    // Sample the color from the mapped position in the inspiration image
+    // sample the color from the mapped position in the inspiration image
     let c = inspiration.image.get(imgX, imgY);
 
-    // Set the fill color to the sampled color
+   
     fill(c);
 
-    // Draw the shape at the calculated position
     if (design.shape === 'circle') {
       ellipse(posX, posY, design.size);
     } else if (design.shape === 'square') {
@@ -128,15 +107,11 @@ function p4_inspirations() {
       triangle(posX, posY, posX - design.size / 2, posY + design.size / 2, posX + design.size / 2, posY + design.size / 2);
     }
 
-    // shapesDrawn++;
-    // if (shapesDrawn >= maxShapes) {
-    //   break;
-    // }
+
   }
 
 }
-  let MshapesDrawn = 0;
-  let MmaxShapes = 10000;   
+ 
 
   
   function p4_mutate(design, inspiration, rate) {
@@ -144,47 +119,20 @@ function p4_inspirations() {
     design.size = mut(design.size, 10, 100, rate);
 
 
-  //   for (let box of design.fg) {
-      
-  //     let posX = box.x;
-  //     let posY = box.y;
-  //     let imgX = Math.round(map(posX, 0, width, 0, inspiration.image.width));
-  //     let imgY = Math.round(map(posY, 0, height, 0, inspiration.image.height));
-  //     let c = inspiration.image.get(imgX, imgY);
-  //     box.fill = c;
-  //     fill(c);
-  //     box.x = mut(box.x, 0, width, rate);
-  //     box.y = mut(box.y, 0, height, rate);
-  //     box.w = mut(box.w, 0, width/2, rate);
-  //     box.h = mut(box.h, 0, height/2, rate);
-  //   }
-  // }
-    // Mutate the color (if needed)
-  
-    // Draw the shapes
-  //   let MnumShapes = min(MmaxShapes - MshapesDrawn, 100); // Draw up to 10 shapes at a time
     for (let i = 0; i < 2500; i++) {
-
-      // Mutate the position of the shape
-      // let posX = mut(random(width), 0, width, rate);
-      // let posY = mut(random(height), 0, height, rate);
-      // let posX = random(width);
-      // let posY = random(height);
+      //same thing as above
       let posX = design.fg[i].x;
       let posY = design.fg[i].y;
   
-      // Sample a color from a random position in the inspiration image
       let imgX = Math.round(map(posX, 0, width, 0, inspiration.image.width));
       let imgY = Math.round(map(posY, 0, height, 0, inspiration.image.height));
   
-      // Sample the color from the mapped position in the inspiration image
       let c = inspiration.image.get(imgX, imgY);
   
-      // Set the fill color to the sampled color
       fill(c);
   
-      // Draw the shape at the calculated position
       if (design.shape === 'circle') {
+        //mutate values of the box
         design.fg[i].x = mut(design.fg[i].x, 0, width, rate);
         design.fg[i].y = mut(design.fg[i].y, 0, height, rate);
         design.fg[i].w = mut(design.fg[i].w, 0, width/2, rate);
@@ -204,10 +152,7 @@ function p4_inspirations() {
         triangle(posX, posY, posX - design.size / 2, posY + design.size / 2, posX + design.size / 2, posY + design.size / 2);
       }
   
-      // MshapesDrawn++;
-      // if (MshapesDrawn >= MmaxShapes) {
-      //   break;
-      // }
+     
     }
   }
   
