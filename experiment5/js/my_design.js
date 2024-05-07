@@ -79,6 +79,7 @@ function p4_inspirations() {
   function p4_render(design, inspiration) {
     noStroke();
     background(design.bg);
+    blendMode(BLEND);
 
    
 
@@ -96,8 +97,9 @@ function p4_inspirations() {
     // sample the color from the mapped position in the inspiration image
     let c = inspiration.image.get(imgX, imgY);
 
-   
-    fill(c);
+    // fill(c)
+    fill(red(c), green(c), blue(c), 175);
+
 
     if (design.shape === 'circle') {
       ellipse(posX, posY, design.size);
@@ -117,6 +119,7 @@ function p4_inspirations() {
   function p4_mutate(design, inspiration, rate) {
     // Mutate the size
     design.size = mut(design.size, 10, 100, rate);
+    blendMode(BLEND);
 
 
     for (let i = 0; i < 2500; i++) {
@@ -129,7 +132,8 @@ function p4_inspirations() {
   
       let c = inspiration.image.get(imgX, imgY);
   
-      fill(c);
+      fill(red(c), green(c), blue(c), 127);
+
   
       if (design.shape === 'circle') {
         //mutate values of the box
@@ -137,18 +141,24 @@ function p4_inspirations() {
         design.fg[i].y = mut(design.fg[i].y, 0, height, rate);
         design.fg[i].w = mut(design.fg[i].w, 0, width/2, rate);
         design.fg[i].h = mut(design.fg[i].h, 0, height/2, rate);
+        posX = design.fg[i].x;
+        posY = design.fg[i].y;
         ellipse(posX, posY, design.size);
       } else if (design.shape === 'square') {
         design.fg[i].x = mut(design.fg[i].x, 0, width, rate);
         design.fg[i].y = mut(design.fg[i].y, 0, height, rate);
         design.fg[i].w = mut(design.fg[i].w, 0, width/2, rate);
         design.fg[i].h = mut(design.fg[i].h, 0, height/2, rate);
+        posX = design.fg[i].x;
+        posY = design.fg[i].y;
         rect(posX, posY, design.size, design.size);
       } else if (design.shape === 'triangle') {
         design.fg[i].x = mut(design.fg[i].x, 0, width, rate);
         design.fg[i].y = mut(design.fg[i].y, 0, height, rate);
         design.fg[i].w = mut(design.fg[i].w, 0, width/2, rate);
         design.fg[i].h = mut(design.fg[i].h, 0, height/2, rate);
+        posX = design.fg[i].x;
+        posY = design.fg[i].y;
         triangle(posX, posY, posX - design.size / 2, posY + design.size / 2, posX + design.size / 2, posY + design.size / 2);
       }
   
